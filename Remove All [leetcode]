@@ -1,0 +1,16 @@
+int removeElement(int* nums, int numsSize, int val) {
+    int val;
+    scanf("%d",&val);
+    for (i = 0; i < n; i++) {  
+        if (arr[i] != val) {  
+            arr[k++] = arr[i];  
+        }  
+    }   
+    for (i = 0; i < k; i++) {  
+        printf("%d ", arr[i]);  
+    }  
+
+    printf("\n");  
+    return 0;  
+}
+}

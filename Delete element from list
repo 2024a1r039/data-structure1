@@ -1,0 +1,43 @@
+#include <stdio.h>  
+
+int main() {  
+    int N, elementToDelete;  
+    
+    // Read the size of the list  
+    scanf("%d", &N);  
+    
+    int arr[100]; // Declare an array of size 100  
+    
+    // Read N elements into the array  
+    for (int i = 0; i < N; i++) {  
+        scanf("%d", &arr[i]);  
+    }  
+    
+    // Read the element to delete  
+    scanf("%d", &elementToDelete);  
+
+    // Find and delete the element  
+    int indexToDelete = -1;  
+    for (int i = 0; i < N; i++) {  
+        if (arr[i] == elementToDelete) {  
+            indexToDelete = i; // Store the index of the element to delete  
+            break;  
+        }  
+    }  
+
+    // If the element is found, shift the remaining elements  
+    if (indexToDelete != -1) {  
+        for (int i = indexToDelete; i < N - 1; i++) {  
+            arr[i] = arr[i + 1];  
+        }  
+        N--; // Reduce the size of the array  
+    }  
+
+    // Print the remaining elements  
+    for (int i = 0; i < N; i++) {  
+        printf("%d ", arr[i]);  
+    }  
+    printf("\n"); // Print a newline at the end  
+
+    return 0;  
+}

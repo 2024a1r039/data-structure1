@@ -1,0 +1,97 @@
+#include <stdio.h>
+#define MAX 100
+
+// Stack structure
+struct Stack {
+    int arr[MAX];
+    int top;
+};
+
+// Initialize stack
+void initStack(struct Stack* s) {
+    s->top = -1;
+}
+
+// Check if the stack is empty
+int isEmpty(struct Stack* s) {
+    return (s->top == -1);
+}
+
+// Check if the stack is full
+int isFull(struct Stack* s) {
+    return (s->top == MAX - 1);
+}
+
+// Push an element onto the stack
+void push(struct Stack* s, int value) {
+    if (isFull(s)) {
+        printf("Stack overflow\n");
+    } else {
+        s->arr[++(s->top)] = value;
+    }
+}
+
+// Pop an element from the stack
+int pop(struct Stack* s) {
+    if (isEmpty(s)) {
+        printf("Stack underflow\n");
+        return -1; // Return an error code for empty stack
+    } else {
+        return s->arr[(s->top)--];
+    }
+}
+
+// Function to display stack elements
+void display(struct Stack* s) {
+    for (int i = s->top; i >= 0; i--) {
+        printf("%d ", s->arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    struct Stack stack;
+    initStack(&stack);
+
+    int n;
+ //   printf("Enter the number of elements (N): ");
+    scanf("%d", &n);
+
+    // Read elements into the stack
+    //printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        int temp;
+        scanf("%d", &temp);
+        push(&stack, temp);
+    }
+
+    // Sorting stack elements in descending order
+    int arr[MAX];
+    int sortedSize = 0;
+
+    // Pop all elements from stack and store them in arr
+    while (!isEmpty(&stack)) {
+        arr[sortedSize++] = pop(&stack);
+    }
+
+    // Simple sorting in descending order (Bubble Sort)
+    for (int i = 0; i < sortedSize - 1; i++) {
+        for (int j = 0; j < sortedSize - i - 1; j++) {
+            if (arr[j] < arr[j + 1]) {
+                // Swap elements
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+
+    // Display elements in descending order
+   // printf("Stack elements in descending order: ");
+    for (int i = 0; i < sortedSize; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}

@@ -1,0 +1,25 @@
+char* removeStars(char* s) {
+    int maxSize = strlen(s);  
+    char* result = (char*)malloc((maxSize + 1) * sizeof(char));  
+    int resultIndex = 0; // To keep track of position in result  
+
+    // Iterate through the original string  
+    for (int i = 0; s[i] != '\0'; i++) {  
+        if (s[i] == '*') {  
+            // If we encounter a star, we should remove the last non-star character if there is one  
+            if (resultIndex > 0) {  
+                resultIndex--; // Remove the last non-star character  
+            }  
+        } else {  
+            // Copy the current character to result  
+            result[resultIndex] = s[i];  
+            resultIndex++;  
+        }  
+    }  
+    
+    // Null-terminate the resulting string  
+    result[resultIndex] = '\0';  
+
+    return result; // Return the final string  
+}  
+

@@ -148,34 +148,22 @@ void Display(){
     }
 }
 void sort() {
-    if (head == NULL) {
-        printf("List is empty\n");
-        return;
-    }
-
-    int swapped;
-    Node* ptr1;
-    Node* lptr = NULL;
-
-    do {
-        swapped = 0;
-        ptr1 = head;
-
-        while (ptr1->next != lptr) {
-            if (ptr1->data > ptr1->next->data) {
-                int temp = ptr1->data;
-                ptr1->data = ptr1->next->data;
-                ptr1->next->data = temp;
-                swapped = 1;
+    Node *last =NULL;
+   for(Node* i= head ; i->next != NULL;i=i->next){
+        Node* j;
+        for( j = head; j->next != last;j=j->next){
+            if(j->data > j->next->data){
+                int temp = j->data;
+                j->data = j->next->data;
+                j->next->data = temp;
             }
-            ptr1 = ptr1->next;
         }
-        lptr = ptr1;
-    } while (swapped);
-
-    printf("List Sorted !!!\n");
+        last = j;
+    }
+    printf("List Sorted Successfully\n");
     Display();
-}
+   }
+
 
 int main(){
     while(1) {

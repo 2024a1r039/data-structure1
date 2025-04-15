@@ -20,6 +20,7 @@ void enqueue(int value){
         }
         else{
             rear->next = temp;
+            rear = temp;
         }
         printf("Element Inserted: %d\n", value);
     }
@@ -53,7 +54,7 @@ void display(){
     }
     else{
         struct Node* temp = front;
-        printf("Queue elements: ");
+               printf("Queue elements:");
         while(temp != NULL){
             printf("%d ", temp->data);
             temp = temp->next;

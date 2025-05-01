@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define max 10100
+int bst[max];
+
+void initalize(){
+    for(int i=0;i<max;i++){
+        bst[i]=-1;
+    }
+}   
+void insert(int index, int value){
+    if(index>=max){
+        return;
+    }
+     if(bst[index]==-1){
+        bst[index]=value;
+        return;
+    }
+     if(value<bst[index]){
+        insert(2*index+1, value);    
+    }
+    else{
+        insert(2*index+2,value);
+    }
+}
+
+
+int main() {
+    int N,value, sum=0;
+    initalize();
+    scanf("%d",&N);
+    for(int i=0;i<N;i++){
+        scanf("%d",&value);
+        insert(0,value);
+    }
+    for(int i=0;i<max;i++){
+        if(bst[i] !=-1){
+            sum = sum+ bst[i];
+        }
+    }
+    printf("%d",sum);
+    return 0;
+}

@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h> 
+#define MAX_SIZE 20001
+int bst[MAX_SIZE];  
+
+void initialize_bst() {  
+    for (int i = 0; i < MAX_SIZE; i++)  
+        bst[i] = -1;  
+}  
+void insert(int index, int value) {  
+    if (index >= MAX_SIZE) {  
+        return;  
+    }  
+    if (bst[index] == -1) {  
+        bst[index] = value;  
+        return;  
+    }   
+    if (value < bst[index]) {  
+        insert(2 * index + 1, value);  
+    } else {  
+        insert(2 * index + 2, value);  
+    }  
+}  
+int search(int root,int target){
+    int i=0;
+    while(i<MAX_SIZE && bst[i] != -1){
+        if(bst[i] == target){
+            return i;
+        }
+        else if(target < bst[i]){
+            i = 2 * i + 1;
+        }
+        else{
+            i = 2 * i + 2;
+        }
+    }
+    return -1;
+}
+int main(){
+       int N, value,target,index;
+
+    initialize_bst();   
+    scanf("%d", &N);  
+    if (N < 1 || N > 100) {  
+        printf("Invalid N!\n");  
+        return 1;  
+    }  
+
+    for (int i = 0; i < N; i++) {  
+        scanf("%d", &value);  
+        insert(0, value);  
+    }  
+  scanf("%d",&target);
+                index=search(0,target) ;
+                if(index != -1){
+                    printf("Found");
+                }
+                else{
+                    printf("Not Found");
+                }
+
+    return 0;
+}

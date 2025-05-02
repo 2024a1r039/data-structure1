@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define max 100
+int bst[max];
+int nodecount =0;
+void initalize(){
+    for(int i=0;i<max;i++){
+        bst[i]=-1;
+    }
+}
+void insert(int index, int value){
+    if(index>=max){
+        return;
+    }
+    if(bst[index]==-1){
+        bst[index]=value;
+        return;
+    }
+    if(value<bst[index]){
+        insert(2*index+1,value);
+    }
+    else{
+        insert(2*index+2,value);
+    }
+}
+int sum(int index){
+if(index>=max || bst[index]==-1){
+    return 0;
+}
+int leftsum = sum(2*index+1);
+int rightsum = sum(2*index+2);
+if((2*index+1 >= max || bst[2*index+1] ==-1)&& (2*index+2 >max || bst[2*index+2]==-1)){
+    return bst[index];
+}
+    return leftsum+rightsum;
+}
+
+int main() {
+   int n,value;
+   initalize();
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        scanf("%d",&value);
+        insert(0,value);
+    }
+int sumofleave = sum(0);
+    printf("%d",sumofleave);
+    return 0;
+}
